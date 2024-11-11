@@ -1,0 +1,165 @@
+---
+title: 'Principal Component Analysis'
+teaching: 10
+exercises: 2
+---
+
+:::::::::::::::::::::::::::::::::::::: questions 
+
+- How do you write a lesson using R Markdown and `{sandpaper}`?
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: objectives
+
+- Explain how to use markdown with the new lesson template
+- Demonstrate how to include pieces of code, figures, and nested challenge blocks
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+CAVE! PINGVINERNE ER RET SEPAREREDE ALLEREDE...
+FIND ET ANDET DATASÆT
+
+Der er et vin-datasæt, hvor vi desværre ikke ved hvilke druesorter der er
+tale om. Men som er bedre.
+
+https://archive.ics.uci.edu/dataset/109/wine
+
+```{r, include = FALSE}
+library(tidyverse)
+library(palmerpenguins)
+library(GGally)
+library(ggExtra)
+library(patchwork)
+penguins <- penguins %>% filter(complete.cases(.))
+```
+
+# Principal Component Analyse
+
+PCA is a method for reducing dimensions of a dataset. 
+
+Let us observe some penguins:
+
+```{r looking-at-penguins}
+penguins %>% 
+  head()
+```
+
+There are 8 variables, or dimensions in this dataset. The dimension `year` is 
+not one we have any use for here.
+
+Looking just at the numerical variables, there is a lot of variation, just not
+variation that we nessecarily can use for predicting stuff:
+```{r}
+penguins %>% 
+  ggplot(aes(bill_length_mm, body_mass_g, color = sex)) +
+  geom_point() +
+  ggtitle("weight and bill length is not usefull for predicting sex")
+  
+```
+
+By applying PCA, we can reduce the four dimensions to fewer, that might be 
+better at finding patterns.
+
+We do that by making new variables, or dimensions, that are combinations of the
+original dimensions. We might make one that is the sum of the four dimensions, 
+where we multiply them by 0.1, 4.2, 47 and 0.001 respectively. And another 
+where we multiply with some other values. If we choose those values correctly,
+we might get a plot that nicely separates the two sexes.
+
+The assumption is that the variation in the numeric data is dependent on the
+sex of the penguins. But rather than figuring out how the variation in weight
+describes that, we construct a set of dimensions, that describe the over all 
+variation in the numeric data.
+
+And rather than doing it by hand, we can get R to do it for us.
+
+
+
+
+
+
+
+
+
+så trækker vi oplysninger om pingvin arten ud til senere brug:
+```{r species-pingvin, echo  =F}
+species_penguins <- clean_penguins %>% pull(species)
+species_penguins %>% head()
+```
+
+Og kører PCA på den. Det sker med funktionen `prcomp`:
+```{r run-pca, echo  =F}
+data_penguins <- clean_penguins %>% select(-species)
+pca_penguins <- prcomp(data_penguins, scale. = T)
+```
+
+Og så kan vi plotte det. Vi får en del med i modellen, men lad os starte
+med at se på de principiale komponenter. De ligger i pca_penguins$x.
+Vi tilføjer oplysninger om pingvin-arten, og farvelægger efter netop den:
+```{r pca-plot}
+pca_penguins$x %>% 
+  as_tibble() %>% 
+  mutate(species = species_penguins) %>% 
+  ggplot(aes(PC1, PC2, color = species)) + 
+  geom_point()
+
+```
+Vi kan sammenligne med et plot af dimensionerne på deres næb:
+```{r}
+penguins %>% 
+  ggplot(aes(bill_length_mm, bill_depth_mm, color = species)) +
+  geom_point()
+```
+
+Når vi sammenligner, kan vi se at Æselpingvinerne (Gentoo) er pænt
+adskilt fra de to andre pingvinarter i plottet.
+
+Det kan vi så bruge. Vej pingvinerne, mål deres næb og deres vinger. Og du
+kan afgøre om de er en æselpingvin. 
+
+Ja, det er nok lettere at kigge på pingvinen, og se om den ligner en 
+æselpingvin eller ej.
+
+## Hvad ligger der ellers i modellen?
+
+PCA-modellen for pingvinerne hedder pca_penguins. 
+
+Den indeholder flere ting. I x ligger de nye værdier for alle 
+pingvinerne i de nye dimensioner, kaldet Principiale Komponenter:
+```{r}
+pca_penguins$x %>% head()
+```
+
+
+Hvad havde den første pingvin af data?
+```{r}
+data_penguins %>% slice(1)
+```
+
+Og hvor blev den placeret i de nye koordinater?
+```{r}
+pca_penguins$x[1,]
+```
+Hvordan fandt vi dem?
+```{r}
+pca_penguins$rotation
+```
+
+```{r}
+(43.99279-39.1)* 0.4537532 - (17.16486-18.7)*0.3990472 + (200.96697-181)*0.5768250+ (4207.05706-3750)*0.5496747
+```
+```{r}
+
+```
+
+
+::::::::::::::::::::::::::::::::::::: keypoints 
+
+- Use `.md` files for episodes when you want static content
+- Use `.Rmd` files for episodes when you need to generate output
+- Run `sandpaper::check_lesson()` to identify any issues with your lesson
+- Run `sandpaper::build_lesson()` to preview your lesson locally
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+

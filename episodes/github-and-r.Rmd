@@ -1,0 +1,85 @@
+---
+title: 'GitHub and R'
+teaching: 10
+exercises: 2
+---
+
+:::::::::::::::::::::::::::::::::::::: questions 
+
+- What actually is github? 
+- How is that even relevant for me?
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: objectives
+
+- Learn how to setup git and GitHub in RStudio
+- Learn how to use GitHub for backup, sharing, versioning and collaboration
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+## What is GitHub?
+
+You might have seen GitHub before. An integral part of writing code is googling
+(and chatgpting) for a solution that kinda matches your problem, copying it, and
+adjusting the code so it hopefully does what you need it to do.
+
+A lot of the search results you get will go to StackOverflow, but many will end
+up on GitHub. And when the chatbot can help you, it is partially because it has 
+been trained on GitHub.
+
+Git is a system for keeping track of different versions of code. 
+And because code is just text, it works nicely with text as well, as long as it
+is formatted in plain text.
+
+You have a file on your computer. You save it, and use git to store _that_ version
+in a `git-repo` on your computer. When you make changes, you add (commit) those
+changes to the repo, and Git keeps track of all the changes for you. That is 
+pretty neat.
+
+What is even better is that you can push _all_ the changes you made to a centralised
+online repository, where your local changes will be stored as well. If something
+bad happens to your computer, you have a backup, that you can pull down to a 
+new computer.
+
+
+# Interaktion med github i R-sammenhænge.
+
+Der er mange detaljer. Dette er noten om hvordan man får sat sit Personal
+Access Token (PAT) i RStudio.
+
+## Update personal access token:
+
+Det gøres lettest ved at bruge pakken `gitcreds`
+```{r gitcreds-eksempel, eval = F}
+install.packages("gitcreds")
+library(gitcreds)
+gitcreds_set()
+```
+
+Funktionen returnerer:
+```{r setcreds-output, eval  =F }
+1: Keep these credentials
+2: Replace these credentials
+3: See the password / token
+```
+
+Vælg "2" og paste dit PAT ind på prompten.
+
+Hvor får du så et PAT? Det sker heromkring fra:
+
+
+Det token får vi heromkring fra:
+
+[https://github.com/settings/tokens](https://github.com/settings/tokens)
+
+
+
+::::::::::::::::::::::::::::::::::::: keypoints 
+
+- GitHub is the standard way for writing code collaboratively
+- Be careful about data - not everything belongs on GitHub
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
