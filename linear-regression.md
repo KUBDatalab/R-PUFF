@@ -336,6 +336,20 @@ function of its weigth. You find data on penguins in the library `palmerpenguins
 
 ``` r
 library(palmerpenguins)
+```
+
+``` output
+
+Attaching package: 'palmerpenguins'
+```
+
+``` output
+The following objects are masked from 'package:datasets':
+
+    penguins, penguins_raw
+```
+
+``` r
 penguin_model <- lm(flipper_length_mm~body_mass_g, data = penguins)
 summary(penguin_model)
 ```

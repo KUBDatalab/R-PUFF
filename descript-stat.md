@@ -58,6 +58,20 @@ the actual data is called `penguins` and is part of the package `palmerpenguins`
 
 ``` r
 library(palmerpenguins)
+```
+
+``` output
+
+Attaching package: 'palmerpenguins'
+```
+
+``` output
+The following objects are masked from 'package:datasets':
+
+    penguins, penguins_raw
+```
+
+``` r
 head(penguins)
 ```
 
