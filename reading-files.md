@@ -168,6 +168,8 @@ formats.
 SAS is a proprietary statistical software suite developed by SAS
 Institute.
 
+![](fig/SasScreenshot.png)
+
 The package `haven` can read SAS-files:
 
 
@@ -186,7 +188,8 @@ specific file formats.
 
 ## JSON
 
-Not all data come in a nice rectangular format:
+Not all data come in a nice rectangular format, note the multiple phone numbers
+for the White House:
 
 +-------------------------------------+--------------+----------------+
 | Country                             | Name         | Phonenumber    |
@@ -202,9 +205,9 @@ Not all data come in a nice rectangular format:
 | Vatican                             | The Pope     | 011-39-6-6982  |
 +-------------------------------------+--------------+----------------+
 
-There are two locations in the US, and one of them have two phonenumbers.
-These kinds of structure, where one row contains data with more than one
-row (etc), are called nested, and are typically stored or distributed in the
+There are two locations in the US, and one of them have two phone numbers.
+These kinds of structures, where one row contains data with more than one
+row (etc), are called nested, and are often stored or distributed in the
 JSON-format.
 
 JSON can be read using `fromJSON()` from the `jsonlite` library.

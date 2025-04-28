@@ -486,7 +486,7 @@ Warning: Removed 2 rows containing non-finite outside the scale range
 (`stat_bin()`).
 ```
 
-<img src="fig/descript-stat-rendered-unnamed-chunk-14-1.png" style="display: block; margin: auto;" />
+<img src="fig/descript-stat-rendered-histogram-1.png" style="display: block; margin: auto;" />
 
 By default ggplot chooses 30 bins, typically we should chose a different
 number:
@@ -503,7 +503,7 @@ Warning: Removed 2 rows containing non-finite outside the scale range
 (`stat_bin()`).
 ```
 
-<img src="fig/descript-stat-rendered-unnamed-chunk-15-1.png" style="display: block; margin: auto;" />
+<img src="fig/descript-stat-rendered-change_bin_n-1.png" style="display: block; margin: auto;" />
 
 Or, ideally, set the widths of them, manually:
 
@@ -520,7 +520,7 @@ Warning: Removed 2 rows containing non-finite outside the scale range
 (`stat_bin()`).
 ```
 
-<img src="fig/descript-stat-rendered-unnamed-chunk-16-1.png" style="display: block; margin: auto;" />
+<img src="fig/descript-stat-rendered-change_bin_width-1.png" style="display: block; margin: auto;" />
 Or even specify the exact intervals we want, here intervals from 0 to 6500 gram
 in intervals of 250 gram:
 
@@ -537,7 +537,7 @@ Warning: Removed 2 rows containing non-finite outside the scale range
 (`stat_bin()`).
 ```
 
-<img src="fig/descript-stat-rendered-unnamed-chunk-17-1.png" style="display: block; margin: auto;" />
+<img src="fig/descript-stat-rendered-bin_breaks-1.png" style="display: block; margin: auto;" />
 The histogram provides us with a visual indication of both range, the variation
 of the values, and an idea about where the data is located.
 
@@ -818,7 +818,7 @@ Warning: Removed 2 rows containing non-finite outside the scale range
 (`stat_boxplot()`).
 ```
 
-<img src="fig/descript-stat-rendered-unnamed-chunk-28-1.png" style="display: block; margin: auto;" />
+<img src="fig/descript-stat-rendered-boxplots-1.png" style="display: block; margin: auto;" />
 
 The boxplot shows us the median (the fat line in the middel of each
 box), the 1st and 3rd quartiles (the ends of the boxes), and the range,
@@ -826,6 +826,171 @@ with the whiskers at each end of the boxes, illustrating the minimum and
 maximum. Any observations, more than 1.5 times the IQR from either the
 1st or 3rd quartiles, are deemed as outliers and would be plotted as
 individual points in the plot.
+
+
+## Counting
+
+Most of the descriptive functions above are focused on continuous variables, 
+maybe grouped by one or more categorical variables.
+
+What about the categorical themselves?
+
+The one thing we can do looking only at categorical variables, is counting.
+
+Counting the different values in a single categorical variable in base-R is done
+using the `table(()` function 
+
+
+``` r
+table(penguins$sex)
+```
+
+``` output
+
+female   male 
+   165    168 
+```
+
+Often we are interested in cross tables, tables where we count the different
+combinations of the values in more than one categorical variable, eg the 
+distribution of the two different penguin sexes on the three different islands:
+
+
+``` r
+table(penguins$island, penguins$sex)
+```
+
+``` output
+           
+            female male
+  Biscoe        80   83
+  Dream         61   62
+  Torgersen     24   23
+```
+
+We can event group on three (or more) categorical variables, but the output 
+becomes increasingly difficult to read the mote variables we add:
+
+
+``` r
+table(penguins$island, penguins$sex, penguins$species)
+```
+
+``` output
+, ,  = Adelie
+
+           
+            female male
+  Biscoe        22   22
+  Dream         27   28
+  Torgersen     24   23
+
+, ,  = Chinstrap
+
+           
+            female male
+  Biscoe         0    0
+  Dream         34   34
+  Torgersen      0    0
+
+, ,  = Gentoo
+
+           
+            female male
+  Biscoe        58   61
+  Dream          0    0
+  Torgersen      0    0
+```
+
+## Aggregate
+
+A different way of doing that in base-R is using the `aggregate()` function:
+
+
+``` r
+aggregate(sex ~ island, data = penguins, FUN = length)
+```
+
+``` output
+     island sex
+1    Biscoe 163
+2     Dream 123
+3 Torgersen  47
+```
+
+Here we construct the crosstable using the formula notation, and specify 
+which function we want to apply on the results. This can be used to calculate
+summary statistics on groups, by adjusting the `FUN` argument.
+
+## Counting in tidyverse
+
+In tidyverse we will typically group the data by the variables we want to count,
+and then tallying them:
+
+
+``` r
+penguins %>% 
+  group_by(sex) %>% 
+  tally()
+```
+
+``` output
+# A tibble: 3 × 2
+  sex        n
+  <fct>  <int>
+1 female   165
+2 male     168
+3 <NA>      11
+```
+
+`group_by` works equally well with more than one group:
+
+
+``` r
+penguins %>% 
+  group_by(sex, species) %>% 
+  tally()
+```
+
+``` output
+# A tibble: 8 × 3
+# Groups:   sex [3]
+  sex    species       n
+  <fct>  <fct>     <int>
+1 female Adelie       73
+2 female Chinstrap    34
+3 female Gentoo       58
+4 male   Adelie       73
+5 male   Chinstrap    34
+6 male   Gentoo       61
+7 <NA>   Adelie        6
+8 <NA>   Gentoo        5
+```
+
+But the output is in a long format, and often requires some manipulation to get
+into a wider tabular format.
+
+A shortcut exists in tidyverse, `count`, which combines group_by and tally:
+
+
+``` r
+penguins %>% 
+  count(sex, species) 
+```
+
+``` output
+# A tibble: 8 × 3
+  sex    species       n
+  <fct>  <fct>     <int>
+1 female Adelie       73
+2 female Chinstrap    34
+3 female Gentoo       58
+4 male   Adelie       73
+5 male   Chinstrap    34
+6 male   Gentoo       61
+7 <NA>   Adelie        6
+8 <NA>   Gentoo        5
+```
 
 
 ::: keypoints
