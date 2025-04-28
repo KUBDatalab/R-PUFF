@@ -352,7 +352,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Reading data from file</h1>
-        <p>Last updated on 2025-04-22 |
+        <p>Last updated on 2025-04-28 |
 
         <a href="https://github.com/KUBDatalab/R-PUFF/edit/main/episodes/reading-files.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -399,7 +399,7 @@ more common.</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>The most important point is that there is a very high probability
 that at least one package exists that is designed to read a specific
@@ -518,7 +518,7 @@ reading specific file formats.</p>
 </section><section><h2 class="section-heading" id="sas">SAS<a class="anchor" aria-label="anchor" href="#sas"></a></h2>
 <hr class="half-width"><p>SAS is a proprietary statistical software suite developed by SAS
 Institute.</p>
-<p>The package <code>haven</code> can read SAS-files:</p>
+<figure><img src="../fig/SasScreenshot.png" class="figure mx-auto d-block"></figure><p>The package <code>haven</code> can read SAS-files:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -532,7 +532,8 @@ and <code>read_sas</code> tries to guess the correct format.</p>
 <p>If problems arise, <code>haven</code> has more specific functions for
 reading specific file formats.</p>
 </section><section><h2 class="section-heading" id="json">JSON<a class="anchor" aria-label="anchor" href="#json"></a></h2>
-<hr class="half-width"><p>Not all data come in a nice rectangular format:</p>
+<hr class="half-width"><p>Not all data come in a nice rectangular format, note the multiple
+phone numbers for the White House:</p>
 <table style="width:97%;" class="table"><colgroup><col width="50%"><col width="20%"><col width="22%"><col width="4%"></colgroup><tbody><tr class="odd"><td rowspan="2">
 <h1 id="country">Country</h1>
 <p>USA</p>
@@ -561,9 +562,9 @@ reading specific file formats.</p>
 <td>The Pope</td>
 <td>011-39-6-6982</td>
 <td></td>
-</tr></tbody></table><p>There are two locations in the US, and one of them have two
-phonenumbers. These kinds of structure, where one row contains data with
-more than one row (etc), are called nested, and are typically stored or
+</tr></tbody></table><p>There are two locations in the US, and one of them have two phone
+numbers. These kinds of structures, where one row contains data with
+more than one row (etc), are called nested, and are often stored or
 distributed in the JSON-format.</p>
 <p>JSON can be read using <code>fromJSON()</code> from the
 <code>jsonlite</code> library.</p>
@@ -662,8 +663,8 @@ any links that you are not going to use.
   "url": "https://KUBDatalab.github.io/R-PUFF/instructor/reading-files.html",
   "identifier": "https://KUBDatalab.github.io/R-PUFF/instructor/reading-files.html",
   "dateCreated": "2024-11-11",
-  "dateModified": "2025-04-22",
-  "datePublished": "2025-04-22"
+  "dateModified": "2025-04-28",
+  "datePublished": "2025-04-28"
 }
 
   </script><script>
