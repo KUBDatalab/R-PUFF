@@ -60,6 +60,7 @@ contact: 'kubdatalab@kb.dk'
 # Order of episodes in your lesson
 episodes: 
 - reproducible-analysis.Rmd
+- barebones-R.Rmd
 - reading-files.Rmd
 - descript-stat.Rmd
 - table1.Rmd
