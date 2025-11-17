@@ -584,7 +584,7 @@ the first chunk, add your own text, and change the plot to plot the
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Make a new RMarkdown document - File -&gt; New File -&gt; R
 Markdown.</p>
@@ -4563,7 +4563,7 @@ mph?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>3.932*12.5 - 17.579 = 31.571 ft</p>
 </div>
@@ -4588,7 +4588,7 @@ that prediction?</h3>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Yep. We might be able to measure the speed with the implied
 precision. But the prediction implies a precision on the scale of
@@ -4702,7 +4702,7 @@ library <code>palmerpenguins</code>.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4814,7 +4814,7 @@ distributed.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -6040,7 +6040,24 @@ any links that you are not going to use.
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="annotering-af-ggplots">Annotering af ggplots<a class="anchor" aria-label="anchor" href="#annotering-af-ggplots"></a>
+<section><h2 class="section-heading" id="mysteriet-om-de-forskellige-histogrammer">Mysteriet om de forskellige histogrammer<a class="anchor" aria-label="anchor" href="#mysteriet-om-de-forskellige-histogrammer"></a>
+</h2>
+<hr class="half-width">
+<p>Vi oplevede at der var forskelle på hvordan vores histogrammer så
+ud.</p>
+<p>Årsagen er fundet. Med opgraderingen af ggplot2 til version 4.0.0
+blev den måde “bins” beregnes på konsolideret.</p>
+<p>Den var hidtil blevet foretaget lidt forskelligt afhængigt af hvilken
+type plot der blev lavet, og ved opgradringen blev det samlet til en og
+kun en måde. Med det resultat at beregningen af “bins” ændredede sig for
+<code>geom_histogram</code>. De af jer der havde den nyeste version fik
+derfor et histogram der så anderledes ud end de af jer (underviseren
+inklusive), der havde den gamle version af ggplot2.</p>
+<p>For at komplicere det hele yderligere, gav en opdatering af tidyverse
+med “install.packages(”tidyverse”)” <em>ikke</em> den nye version 4.0.0
+af ggplot2. Der skulle en “install.packages(”ggplot2”)” til for at rette
+op på problemet.</p>
+</section><section><h2 class="section-heading" id="annotering-af-ggplots">Annotering af ggplots<a class="anchor" aria-label="anchor" href="#annotering-af-ggplots"></a>
 </h2>
 <hr class="half-width">
 <p>Hvordan tilføjer vi R^2 til vores plot med en lineær regression?</p>

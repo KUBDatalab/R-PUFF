@@ -297,7 +297,8 @@
 
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#annotering-af-ggplots">Annotering af ggplots</a></li>
+        <ul><li><a href="#mysteriet-om-de-forskellige-histogrammer">Mysteriet om de forskellige histogrammer</a></li>
+<li><a href="#annotering-af-ggplots">Annotering af ggplots</a></li>
 <li><a href="#sankey-diagrammer">Sankey diagrammer</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
@@ -397,7 +398,22 @@
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="annotering-af-ggplots">Annotering af ggplots<a class="anchor" aria-label="anchor" href="#annotering-af-ggplots"></a></h2>
+<section><h2 class="section-heading" id="mysteriet-om-de-forskellige-histogrammer">Mysteriet om de forskellige histogrammer<a class="anchor" aria-label="anchor" href="#mysteriet-om-de-forskellige-histogrammer"></a></h2>
+<hr class="half-width"><p>Vi oplevede at der var forskelle på hvordan vores histogrammer så
+ud.</p>
+<p>Årsagen er fundet. Med opgraderingen af ggplot2 til version 4.0.0
+blev den måde “bins” beregnes på konsolideret.</p>
+<p>Den var hidtil blevet foretaget lidt forskelligt afhængigt af hvilken
+type plot der blev lavet, og ved opgradringen blev det samlet til en og
+kun en måde. Med det resultat at beregningen af “bins” ændredede sig for
+<code>geom_histogram</code>. De af jer der havde den nyeste version fik
+derfor et histogram der så anderledes ud end de af jer (underviseren
+inklusive), der havde den gamle version af ggplot2.</p>
+<p>For at komplicere det hele yderligere, gav en opdatering af tidyverse
+med “install.packages(”tidyverse”)” <em>ikke</em> den nye version 4.0.0
+af ggplot2. Der skulle en “install.packages(”ggplot2”)” til for at rette
+op på problemet.</p>
+</section><section><h2 class="section-heading" id="annotering-af-ggplots">Annotering af ggplots<a class="anchor" aria-label="anchor" href="#annotering-af-ggplots"></a></h2>
 <hr class="half-width"><p>Hvordan tilføjer vi R^2 til vores plot med en lineær regression?</p>
 <p>To måder.</p>
 <div class="section level3">
