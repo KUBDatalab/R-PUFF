@@ -18,6 +18,19 @@ exercises: 2
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+## Mysteriet om de forskellige histogrammer
+
+Vi oplevede at der var forskelle på hvordan vores histogrammer så ud.
+
+Årsagen er fundet. Med opgraderingen af ggplot2 til version 4.0.0 blev den måde "bins" beregnes på konsolideret.
+
+Den var hidtil blevet foretaget lidt forskelligt afhængigt af hvilken type plot der blev lavet, og ved opgradringen blev 
+det samlet til en og kun en måde. Med det resultat at beregningen af "bins" ændredede sig for `geom_histogram`. 
+De af jer der havde den nyeste version fik derfor et histogram der så anderledes ud end de af jer (underviseren inklusive),
+der havde den gamle version af ggplot2. 
+
+For at komplicere det hele yderligere, gav en opdatering af tidyverse med "install.packages("tidyverse")" _ikke_ den nye version 4.0.0 af ggplot2. Der skulle en "install.packages("ggplot2")" til for at rette op på problemet.
+
 ## Annotering af ggplots
 
 Hvordan tilføjer vi R^2 til vores plot med en lineær regression?
