@@ -3798,7 +3798,7 @@
     },
     "ggalluvial": {
       "Package": "ggalluvial",
-      "Version": "0.12.5",
+      "Version": "0.12.6",
       "Source": "Repository",
       "Type": "Package",
       "Title": "Alluvial Plots in 'ggplot2'",
@@ -6294,15 +6294,13 @@
     },
     "multcompView": {
       "Package": "multcompView",
-      "Version": "0.1-10",
+      "Version": "0.1-11",
       "Source": "Repository",
       "Type": "Package",
       "Title": "Visualizations of Paired Comparisons",
-      "Date": "2024-04-04",
-      "Author": "Spencer Graves, Hans-Peter Piepho and Luciano Selzer with help from Sundar Dorai-Raj",
-      "Maintainer": "Luciano Selzer <luciano.selzer@gmail.com>",
-      "Description": "Convert a logical vector or a vector of p-values or a correlation, difference, or distance matrix into a display identifying the pairs for which the differences were not significantly different.  Designed for use in conjunction with the output of functions like TukeyHSD, dist{stats}, simint, simtest, csimint, csimtest{multcomp}, friedmanmc, kruskalmc{pgirmess}.",
-      "License": "GPL",
+      "Authors@R": "c( person(\"Spencer\", \"Graves\", role = \"aut\"), person(\"Hans-Peter\", \"Piepho\", role = \"aut\"), person(\"Luciano\", \"Selzer\", email = \"luciano.selzer@gmail.com\", role = c(\"aut\", \"cre\")), person(\"Sundar\", \"Dorai-Raj\", role = \"ctb\"))",
+      "Description": "Convert a logical vector or a vector of p-values or a correlation, difference, or distance matrix into a display identifying the pairs for which the differences were not significantly different. Designed for use in conjunction with the output of functions like TukeyHSD, dist (stats), simint, simtest, csimint, csimtest (multcomp), friedmanmc, kruskalmc (pgirmess).",
+      "License": "GPL-2",
       "Imports": [
         "grid"
       ],
@@ -6311,8 +6309,10 @@
         "pgirmess",
         "MASS"
       ],
-      "RoxygenNote": "7.2.3",
+      "RoxygenNote": "7.3.3",
       "NeedsCompilation": "no",
+      "Author": "Spencer Graves [aut], Hans-Peter Piepho [aut], Luciano Selzer [aut, cre], Sundar Dorai-Raj [ctb]",
+      "Maintainer": "Luciano Selzer <luciano.selzer@gmail.com>",
       "Repository": "CRAN"
     },
     "mvtnorm": {
